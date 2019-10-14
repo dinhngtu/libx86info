@@ -4,14 +4,15 @@ FIND:=/usr/bin/find
 INSTALL:=/usr/bin/install
 
 PREFIX:=/usr/local
-CFLAGS:=-Wall -Wextra -Iinclude/
+CFLAGS+=-Wall -Wextra
+CPPFLAGS+=-MMD -MP -Iinclude/
 ARFLAGS:=rcsU
 INSTALLFLAGS:=-vDm 644
 
 TARGETS:=libx86info.a x86info.pc
 SOURCES:=$(wildcard *.c) $(wildcard printers/*.c)
 OBJECTS:=$(patsubst %.c,%.o,$(SOURCES))
-HEADERS:=$(wildcard include/x86info/*.h)
+DEPS:=$(patsubst %.c,%.d,$(SOURCES))
 
 all: $(TARGETS)
 
@@ -33,7 +34,9 @@ install: libx86info.a x86info.pc
 	$(INSTALL) $(INSTALLFLAGS) libx86info.a $(PREFIX)/lib/libx86info.a
 	$(INSTALL) $(INSTALLFLAGS) x86info.pc $(PREFIX)/lib/pkgconfig/x86info.pc
 
+-include $(DEPS)
+
 clean:
-	$(RM) $(RMFLAGS) $(TARGETS) $(OBJECTS)
+	$(RM) $(RMFLAGS) $(TARGETS) $(OBJECTS) $(DEPS)
 
 .PHONY: clean install
