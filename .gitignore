@@ -1,2 +1,3 @@
 libx86info.a
 *.o
+x86info.pc
