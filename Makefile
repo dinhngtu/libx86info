@@ -30,8 +30,8 @@ x86info.pc: libx86info.a
 
 install: libx86info.a x86info.pc
 	$(FIND) include/ -type f -exec $(INSTALL) $(INSTALLFLAGS) "{}" "$(PREFIX)/{}" \;
-	$(INSTALL) $(INSTALLFLAGS) libx86info.a $(PREFIX)/lib
-	$(INSTALL) $(INSTALLFLAGS) x86info.pc $(PREFIX)/lib/pkgconfig
+	$(INSTALL) $(INSTALLFLAGS) libx86info.a $(PREFIX)/lib/libx86info.a
+	$(INSTALL) $(INSTALLFLAGS) x86info.pc $(PREFIX)/lib/pkgconfig/x86info.pc
 
 clean:
 	$(RM) $(RMFLAGS) $(TARGETS) $(OBJECTS)
