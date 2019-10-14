@@ -1,9 +1,10 @@
 VERSION:=0.0.1
 
+PREFIX:=/usr/local
+
 FIND:=/usr/bin/find
 INSTALL:=/usr/bin/install
 
-PREFIX:=/usr/local
 CFLAGS+=-Wall -Wextra
 CPPFLAGS+=-MMD -MP -Iinclude/
 ARFLAGS:=rcsU
@@ -18,7 +19,7 @@ all: $(TARGETS)
 
 libx86info.a: libx86info.a($(OBJECTS))
 
-x86info.pc: libx86info.a
+x86info.pc:
 	@echo "prefix=$(PREFIX)" > $@
 	@echo "includedir=$(PREFIX)/include" >> $@
 	@echo "libdir=$(PREFIX)/lib" >> $@
@@ -34,9 +35,11 @@ install: libx86info.a x86info.pc
 	$(INSTALL) $(INSTALLFLAGS) libx86info.a $(PREFIX)/lib/libx86info.a
 	$(INSTALL) $(INSTALLFLAGS) x86info.pc $(PREFIX)/lib/pkgconfig/x86info.pc
 
--include $(DEPS)
-
 clean:
 	$(RM) $(RMFLAGS) $(TARGETS) $(OBJECTS) $(DEPS)
 
 .PHONY: clean install
+
+.PRECIOUS: %.o
+
+-include $(DEPS)
