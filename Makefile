@@ -5,7 +5,7 @@ PREFIX:=/usr/local
 FIND:=/usr/bin/find
 INSTALL:=/usr/bin/install
 
-CFLAGS+=-Wall -Wextra
+CFLAGS+=-Wall -Wextra -std=gnu11 -Og -g3 -D_GNU_SOURCE
 CPPFLAGS+=-MMD -MP -Iinclude/
 ARFLAGS:=rcsU
 INSTALLFLAGS:=-vDm 644
