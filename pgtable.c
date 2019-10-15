@@ -105,7 +105,6 @@ uint64_t x86_pg_walk_lm(uint64_t va, uint64_t _cr3, uint64_t _cr4, const struct 
         return X86_LM_INVALID_ADDRESS;
     }
     if (out_ps) {
-        // TODO
         return (fpd << 12) | (pd_idx << 21) | (pt_idx << 12) | offset;
     }
 
@@ -119,7 +118,6 @@ uint64_t x86_pg_walk_lm(uint64_t va, uint64_t _cr3, uint64_t _cr4, const struct 
         return X86_LM_INVALID_ADDRESS;
     }
     if (out_ps) {
-        // TODO
         return (fpt << 12) | (pt_idx << 12) | offset;
     }
 
