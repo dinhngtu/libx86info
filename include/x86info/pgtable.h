@@ -4,8 +4,8 @@
 #include <inttypes.h>
 #include <stdbool.h>
 
-#include "arch/cr.h"
-#include "arch/pgtable.h"
+#include "x86info/arch/cr.h"
+#include "x86info/arch/pgtable.h"
 
 #define X86_LM_INVALID_ADDRESS UINT64_MAX
 
