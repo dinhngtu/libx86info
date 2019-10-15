@@ -16,7 +16,7 @@ static uint64_t walk1_lm_pml4e(const union x86_pml4e *pml4e, const struct x86_pg
         return X86_LM_INVALID_ADDRESS;
     }
     if (pml4e->f.present) {
-        return pml4e->f.present;
+        return pml4e->f.fpdpt;
     } else {
         return X86_LM_INVALID_ADDRESS;
     }
